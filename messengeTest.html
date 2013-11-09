@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="tinyMessenger.js"></script>
+    <script type="text/javascript">
+        $(function(){
+           TM = new TinyMessenger();
+           var k = 2;
+           $('#pub').click(function(e){
+                var obj = new Object();
+                obj.name = 'obj';
+                TM.sendMsg('pubClicked',$(this),{name:'test'},2)
+           })
+           TM.getMsg('pubClicked',function(context,data,num){
+                alert('pub click1')    
+                console.log(context);
+                console.log(data.name);
+                console.log(num)
+           })
+           TM.getMsg('pubClicked',function(i,o){
+                alert('pub click2')    
+           })
+           TM.getMsg('#pub:click',function(){
+                  alert('#pub is click')
+               })
+           $('#pub2').click(function(){
+                TM.sendMsg('pub2Clicked')
+           })
+           TM.getMsg('pub2Clicked',function(){
+                alert('pub2 click2')    
+           })
+        })
+    </script>
+</head>
+<body>
+  <button id="pub">publish</button>
+  <button id="pub2">publish2</button>
+  <button id="sub3"></button>
+</body>
+</html>
