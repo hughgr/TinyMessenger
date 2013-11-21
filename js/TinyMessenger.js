@@ -1,9 +1,3 @@
-var Class = function(){
-    var thisClass = function(){
-        
-    }
-}
-
 var TinyMessenger = function(){
 }
 TinyMessenger.prototype.sendMsg = function(){

@@ -1,4 +1,4 @@
 TinyMessenger
 =============
 
-TinyMessenger is build for module communication
+TinyMessenger is build for module communication.
