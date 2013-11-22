@@ -18,11 +18,13 @@ TinyMessenger.prototype.getMsg = function(ev, callback){
                 callback.apply(this,arguments)
             })
     })
-    var calls = this._callbacks || (this._callbacks = {});
+    this._callbacks || (this._callbacks = {});
     (this._callbacks[ev] || (this._callbacks[ev] = [])).push(callback);
     return this;
 };
-TinyMessenger.prototype.cancelGetMsg = function(){
-
+TinyMessenger.prototype.cancelGetMsg = function(ev,callback){
+    if(!(this._callbacks) || !(this._callbacks[ev])) return this;
+    this._callbacks[ev].splice(this._callbacks[ev].indexOf(callback),1);
+    return this;
 
 }
