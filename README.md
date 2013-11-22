@@ -45,21 +45,55 @@ TinyMessenger是一个为解决模块间通信的小插件，基于典型的pub/
 在A模块中
 
 `timeSelectBox.change(function(){
+
     tm.sendMsg('timeChange',startTime,endTime)
+
     /*startTime,endTime是需要暴露给其他模块的起始时间参数*/
+
 }`
 
 在B模块中
 
 `tm.getMsg('timeChange',functioin(startTime,EndTime){
+
     infoContainer.getInfo(startTime,endTime,goodsId);
+
     /*startTime,endTime是从A模块传递过来的，goodsId是B模块的私有属性*/
+
 })`
 
 在C模块中
 
 `tm.getMsg('timeChange',functioin(startTime,EndTime){
+
     highcharts.drawTable(startTime,endTime);
+
 })`
+
+事实上，B模块和C模块可能还会产生通信，比如C模块可能依赖B模块的goodsId。当然这只是一个最简单的例子,使用TinyMessenger可以无痛构建
+一个简单的模块化APP
+
+使用方法
+
+sendMsg(customEventName,arg1,arg2,arg3...) 
+
+//第一个参数是自定义事件名称，后面的参数是需要进行通信的消息，可以是值类型，也可以是
+引用类型（对象或者数组），如果需要的话也可以传递一个DOM节点过去（不推荐）
+
+getMsg(customEventName,callback);
+
+//订阅者的callback里面接收的参数就是发布者传递过来的消息
+
+cancelMsg(customEventName,callback);
+
+//取消订阅，前提是callback不能为一个匿名函数
+
+事实上getMsg还可以直接绑定到DOM节点上的事件，但严重不推荐这样做，格式是
+
+getMsg('.span1:click',function(){xxxxx})
+
+
+
+
 
 
