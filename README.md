@@ -19,11 +19,11 @@ TinyMessenger是一个为解决模块间通信的小插件，基于典型的pub/
 在选择了时间控件的值以后，商品详情需要根据对应的时间值显示相应的内容，而hightchart则需要
 对应的时间值画出相应的图表，总结来说就是时间控件change以后要做2个操作。最简单的写法就是
 
-`timeSelectBox.change(function(){
-    infoContainer.getInfo(startTime,endTime,goodsId);
-    highcharts.drawTable(startTime,endTime);
-   /*理解意思就行**/
-})`
+`timeSelectBox.change(function(){`
+   ` infoContainer.getInfo(startTime,endTime,goodsId);`
+   ` highcharts.drawTable(startTime,endTime);`
+   `/*理解意思就行**/`
+`})`
 
 这时，耦合就出现了，而且不利于后期代码维护（比如要增加第三个模块时就需要改动timeSelectBox.change里面的东西）
 
